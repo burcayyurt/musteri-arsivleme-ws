@@ -1,0 +1,21 @@
+#default AYARLARI
+---
+spring:
+  profiles: default
+server:
+  port: 8090
+hibernate:
+  formatSql: true
+  showSql: true
+  dialect: com.example.ws.PostgreSQLDialectCustom
+  maxFetchDepth: 1
+  jdbcBatchSize: 30
+  jdbcUrl: jdbc:postgresql://localhost:5432/postgres
+  username: postgres
+  password: 12345Bb
+  hibernateDriverClassName: org.postgresql.Driver
+  c3POMinSize: 2
+  c3POMaxSize: 3
+  c3POTimeout: 300
+  c3POMaxStatement: 100
+  c3POIdleTestPeriod: 3000
