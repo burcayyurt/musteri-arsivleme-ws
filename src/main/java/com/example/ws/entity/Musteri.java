@@ -44,7 +44,8 @@ public class Musteri extends BaseEntity implements Serializable {
         this.musteriAd_Soyad = musteriAd_Soyad;
     }
 
-    @OneToMany(mappedBy = "musteri", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name="musteri_id")
     public Set<Dosya> getMusteriDosyalari() {
         return musteriDosyalari;
     }

@@ -2,6 +2,7 @@ package com.example.ws.entity;
 
 import com.example.ws.ByteArrayDeSerializer;
 import com.example.ws.ByteArraySerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.Type;
@@ -35,7 +36,8 @@ public class Dosya extends BaseEntity implements Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinColumn(name = "musteri_id", referencedColumnName = "musteri_id", insertable=false, updatable=false)
     public Musteri getMusteri() {
         return musteri;
@@ -49,6 +51,7 @@ public class Dosya extends BaseEntity implements Serializable {
     @JsonSerialize(using = ByteArraySerializer.class)
     @JsonDeserialize(using = ByteArrayDeSerializer.class)
     @Column(name = "dosya", columnDefinition="BLOB")
+    @Type(type="org.hibernate.type.BinaryType")
     public byte[] getDosya() {
         return musteriDosyasi;
     }

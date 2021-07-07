@@ -1,3 +1,4 @@
+/*
 package com.example.ws.entity;
 
 import javax.persistence.*;
@@ -48,3 +49,4 @@ public class Kullanici extends BaseEntity implements Serializable {
     }
 
 }
+*/

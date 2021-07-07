@@ -5,11 +5,14 @@ import com.example.ws.dto.MusteriDTO;
 import com.example.ws.entity.Dosya;
 import com.example.ws.entity.Musteri;
 import com.example.ws.service.MusteriArsivlemeService;
+import com.sun.org.apache.xml.internal.resolver.Catalog;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -57,8 +60,7 @@ public class MusteriArsivlemeServiceRestController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Musteri listeleme başarılı" , content = @Content(schema = @Schema(implementation = DosyaDTO.class), mediaType = MediaType.APPLICATION_JSON_UTF8_VALUE)),
             @ApiResponse(responseCode = "400", description = "Musteri listeleme başarısız", content = @Content(schema = @Schema(implementation = String.class), mediaType = MediaType.APPLICATION_JSON_UTF8_VALUE)) })
-    public @ResponseBody ResponseEntity<List<Musteri>> musteriListele(HttpServletRequest httpServletRequest,
-                                                             @RequestBody DosyaDTO dosyaDTO){
+    public @ResponseBody ResponseEntity<List<Musteri>> musteriListele(){
 
         return new ResponseEntity<>(musteriArsivlemeService.musterileriListele(), HttpStatus.OK) ;
     }
@@ -99,7 +101,6 @@ public class MusteriArsivlemeServiceRestController {
             @ApiResponse(responseCode = "200", description = "Dosya listeleme başarılı" , content = @Content(schema = @Schema(implementation = DosyaDTO.class), mediaType = MediaType.APPLICATION_JSON_UTF8_VALUE)),
             @ApiResponse(responseCode = "400", description = "Dosya listeleme başarısız", content = @Content(schema = @Schema(implementation = String.class), mediaType = MediaType.APPLICATION_JSON_UTF8_VALUE)) })
     public @ResponseBody ResponseEntity<Set<Dosya>> dosyalariListele(@PathVariable Long id){
-
         Musteri musteri = musteriArsivlemeService.dosyalariGetir(id);
 
         return new ResponseEntity<>(musteri.getMusteriDosyalari(), HttpStatus.OK) ;

@@ -2,14 +2,10 @@ package com.example.ws.dto;
 
 import com.example.ws.ByteArrayDeSerializer;
 import com.example.ws.ByteArraySerializer;
-import com.example.ws.entity.Musteri;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
-import org.hibernate.annotations.Type;
-
-import javax.persistence.Lob;
 import java.io.Serializable;
 
 @Data
